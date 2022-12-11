@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.basicsoflayout.ui.theme.BasicsOfLayoutTheme
+import com.example.basicsoflayout.ui.theme.backround
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,13 +27,23 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = backround
                 ) {
-
+                    MyApp()
                 }
             }
         }
     }
+}
+
+@Composable
+fun MyApp() {
+        Scaffold(
+            bottomBar = { BottomNavigationBar()}
+        ) { padding ->
+            MainScreen(modifier = Modifier.padding(padding))
+
+        }
 }
 @Composable
 fun MainScreen(
@@ -69,18 +81,10 @@ fun HomeSection(
     }
 }
 
-//@Preview(showBackground = true, backgroundColor = 0XFFF0EAE2)
-//@Composable
-//fun HomeSectionPreview() {
-//    LayoutBasicsTheme {
-//        HomeSection(title = R.string.align_your_body) {
-//            AlignYourBodyRow()
-//        }
-//    }
-//}
+
 
 @Preview(showBackground = true, backgroundColor = 0XFFF0EAE2)
 @Composable
-fun MainScreenPreview() {
-    MainScreen()
+fun MyAppPreview() {
+    MyApp()
 }
